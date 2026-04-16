@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Factory | Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-locked">
+    <section class="auth-shell" id="authShell" aria-label="Authentication">
+        <div class="auth-shell__inner">
+            <div class="auth-shell__header">
+                <a class="brand" href="#top" aria-label="Smart Factory home">
+                    <span class="brand__mark">SF</span>
+                    <span class="brand__text">
+                        <strong>Smart Factory</strong>
+                        <span>Secure Access Node</span>
+                    </span>
+                </a>
+
+                <button class="theme-toggle" id="authThemeToggle" type="button" aria-label="Toggle theme">
+                    <span class="theme-toggle__sun" aria-hidden="true">Light Mode</span>
+                    <span class="theme-toggle__moon" aria-hidden="true">Dark Mode</span>
+                </button>
+            </div>
+
+            <div class="auth-layout">
+                <section class="auth-copy">
+                    <span class="hero__badge">AUTHENTICATION READY</span>
+                    <p class="section-kicker">Secure Factory Access / Local Account Vault</p>
+                    <h1 class="hero__title auth-copy__title">
+                        <span>Smart Factory</span>
+                        <span class="hero__title-gradient">Access Gateway</span>
+                    </h1>
+                    <p class="hero__description auth-copy__description">
+                        Create a local account, then sign in to enter the smart factory command center.
+                        Authentication is handled entirely in the browser using secure front-end state stored in localStorage.
+                    </p>
+                    <div class="auth-demo-grid" aria-label="Authentication features">
+                        <article class="surface-card auth-demo-card">
+                            <p class="panel__eyebrow">Sign Up</p>
+                            <h2>Create A Local Account</h2>
+                            <p>Register with your name, email address, and password to provision a persistent browser session.</p>
+                        </article>
+                        <article class="surface-card auth-demo-card">
+                            <p class="panel__eyebrow">Login</p>
+                            <h2>Resume Your Session</h2>
+                            <p>Sign in with the same credentials later. Your authenticated session remains available until logout.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="surface-card auth-card" aria-label="Authentication forms">
+                    <div class="auth-card__header">
+                        <p class="panel__eyebrow">Factory Authentication</p>
+                        <h2>Access Command Center</h2>
+                        <p class="panel__copy">
+                            Create an account or sign in with an existing one to initialize secure access to the production environment.
+                        </p>
+                    </div>
+
+                    <div class="auth-tabs" role="tablist" aria-label="Authentication actions">
+                        <button class="auth-tab auth-tab--active" id="loginTabButton" type="button" role="tab" aria-selected="true" aria-controls="loginPanel">Login</button>
+                        <button class="auth-tab" id="signupTabButton" type="button" role="tab" aria-selected="false" aria-controls="signupPanel">Sign Up</button>
+                    </div>
+
+                    <div class="auth-panels">
+                        <section class="auth-panel auth-panel--active" id="loginPanel" role="tabpanel" aria-labelledby="loginTabButton">
+                            <form class="auth-form" id="loginForm">
+                                <label class="control-field">
+                                    <span>Email Address</span>
+                                    <input type="email" id="loginEmailInput" autocomplete="username" required>
+                                </label>
+                                <label class="control-field">
+                                    <span>Password</span>
+                                    <input type="password" id="loginPasswordInput" autocomplete="current-password" required>
+                                </label>
+                                <p class="auth-status" id="loginStatus" aria-live="polite">Sign in with an existing account to continue.</p>
+                                <button class="button button--primary auth-form__button" type="submit">Login</button>
+                            </form>
+                        </section>
+
+                        <section class="auth-panel" id="signupPanel" role="tabpanel" aria-labelledby="signupTabButton" hidden>
+                            <form class="auth-form" id="signupForm">
+                                <label class="control-field">
+                                    <span>Full Name</span>
+                                    <input type="text" id="signupNameInput" autocomplete="name" required>
+                                </label>
+                                <label class="control-field">
+                                    <span>Email Address</span>
+                                    <input type="email" id="signupEmailInput" autocomplete="email" required>
+                                </label>
+                                <label class="control-field">
+                                    <span>Password</span>
+                                    <input type="password" id="signupPasswordInput" autocomplete="new-password" required>
+                                </label>
+                                <p class="auth-status" id="signupStatus" aria-live="polite">Create an account to unlock the dashboard experience.</p>
+                                <button class="button button--primary auth-form__button" type="submit">Create Account</button>
+                            </form>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div class="app-shell" id="appShell" hidden>
+        <header class="site-header" id="top">
+            <div class="site-header__inner">
+                <a class="brand" href="#top" aria-label="Smart Factory home">
+                    <span class="brand__mark">SF</span>
+                    <span class="brand__text">
+                        <strong>Smart Factory</strong>
+                        <span>Command Platform</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="#hero">Home</a>
+                    <a href="#input-parameters">Dashboard</a>
+                    <a href="#production-analytics">Analytics</a>
+                    <span class="status-pill status-pill--role" id="userRoleBadge">Session: Guest</span>
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+                        <span class="theme-toggle__sun" aria-hidden="true">Light Mode</span>
+                        <span class="theme-toggle__moon" aria-hidden="true">Dark Mode</span>
+                    </button>
+                    <button class="button button--secondary nav-logout" id="logoutButton" type="button">Logout</button>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+        <section class="hero" id="hero">
+            <div class="hero__grid">
+                <div class="hero__content">
+                    <span class="hero__badge">SYSTEM ONLINE</span>
+                    <p class="section-kicker">Industrial Intelligence / Factory Network</p>
+                    <h1 class="hero__title">
+                        <span>Smart Factory</span>
+                        <span class="hero__title-gradient">Command Center</span>
+                    </h1>
+                    <p class="hero__description">
+                        A premium operations homepage for telemetry-driven production control, live monitoring,
+                        adaptive quality insights, and smart factory recommendations in one unified command surface.
+                    </p>
+                    <div class="hero__actions">
+                        <button class="button button--primary" type="button" data-scroll-target="#input-parameters">
+                            Enter Dashboard
+                        </button>
+                        <button class="button button--ghost" type="button" data-scroll-target="#production-analytics">
+                            View Analytics
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="hero-panel" aria-label="Factory network status">
+                    <div class="hero-panel__top">
+                        <span class="status-pill status-pill--live">Live Telemetry</span>
+                        <span class="hero-panel__stamp" id="lastUpdated">Synchronizing...</span>
+                    </div>
+                    <div class="hero-panel__metric">
+                        <span>Network uptime</span>
+                        <strong>99.98%</strong>
+                    </div>
+                    <div class="hero-panel__rows">
+                        <div>
+                            <span>Primary line</span>
+                            <strong>Assembly 04</strong>
+                        </div>
+                        <div>
+                            <span>Analytics state</span>
+                            <strong id="heroAnalyticsState">Awaiting input</strong>
+                        </div>
+                        <div>
+                            <span>Signed in</span>
+                            <strong id="heroAccessRole">Guest</strong>
+                        </div>
+                        <div>
+                            <span>Theme mode</span>
+                            <strong id="heroThemeState">Dark Mode</strong>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <section class="controls-section" id="input-parameters" aria-label="Input Parameters">
+                <div class="section-heading">
+                    <div class="section-heading__title">
+                        <span class="section-heading__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 7h16M7 12h10M10 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <path d="M6 5.5h12a2.5 2.5 0 0 1 2.5 2.5v8a2.5 2.5 0 0 1-2.5 2.5H6A2.5 2.5 0 0 1 3.5 16V8A2.5 2.5 0 0 1 6 5.5Z" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="section-kicker">Telemetry Input Layer</p>
+                            <h2>Input Parameters</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="surface-card control-panel">
+                    <div class="control-panel__header">
+                        <div>
+                            <p class="panel__eyebrow">System Configuration</p>
+                            <h3>System Configuration</h3>
+                            <p class="panel__copy">
+                                Adjust the simulated factory output and resource consumption parameters.
+                            </p>
+                        </div>
+                        <div class="control-panel__notes">
+                            <span class="panel__note panel__note--access" id="accessStatus">Awaiting authentication.</span>
+                            <span class="panel__note" id="inputStatus">All values are currently zero. Enter data to generate telemetry.</span>
+                        </div>
+                    </div>
+
+                    <form class="control-form" id="analyticsForm">
+                        <div class="control-form__grid">
+                            <label class="control-field">
+                                <span>Total Production (Units)</span>
+                                <input type="number" id="totalProductionInput" min="0" step="1" inputmode="numeric" required>
+                            </label>
+                            <label class="control-field">
+                                <span>Working Hours (H)</span>
+                                <input type="number" id="workingHoursInput" min="0" step="0.1" inputmode="decimal" required>
+                            </label>
+                            <label class="control-field">
+                                <span>Good Products (Units)</span>
+                                <input type="number" id="goodUnitsInput" min="0" step="1" inputmode="numeric" required>
+                            </label>
+                            <label class="control-field">
+                                <span>Defective Products (Units)</span>
+                                <input type="number" id="defectiveUnitsInput" min="0" step="1" inputmode="numeric" required>
+                            </label>
+                            <label class="control-field">
+                                <span>Machine Failures (Count)</span>
+                                <input type="number" id="machineFailuresInput" min="0" step="1" inputmode="numeric" required>
+                            </label>
+                            <label class="control-field">
+                                <span>Energy Consumption (kWh)</span>
+                                <input type="number" id="energyUsageInput" min="0" step="0.1" inputmode="decimal" required>
+                            </label>
+                        </div>
+
+                        <div class="control-form__actions">
+                            <button class="button button--primary" type="submit">Generate Telemetry</button>
+                            <button class="button button--secondary" type="button" id="restoreDefaultsButton">Restore Default State</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="telemetry-section" aria-label="Live Telemetry">
+                <div class="section-heading telemetry-heading">
+                    <div>
+                        <p class="section-kicker">Live Monitoring</p>
+                        <h2>Live Telemetry</h2>
+                    </div>
+                    <span class="status-pill status-pill--live">Data Stream Active</span>
+                </div>
+                <div class="telemetry-grid" id="telemetryGrid" aria-live="polite"></div>
+            </section>
+
+            <section class="recommendations-section" aria-label="Smart Recommendations">
+                <div class="section-heading recommendations-heading">
+                    <div>
+                        <p class="section-kicker">Adaptive Guidance</p>
+                        <h2>Smart Recommendations</h2>
+                    </div>
+                </div>
+                <div class="recommendations-list" id="recommendationsList" aria-live="polite"></div>
+            </section>
+
+            <section class="analytics-section" id="production-analytics" aria-label="Production Analytics">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Factory Insight Layer</p>
+                        <h2>Production Analytics</h2>
+                    </div>
+                </div>
+
+                <div class="analytics-layout">
+                    <article class="surface-card panel panel--breakdown">
+                        <div class="panel__header">
+                            <div>
+                                <p class="panel__eyebrow">Output Mix</p>
+                                <h3>Production Breakdown</h3>
+                                <p class="panel__copy">
+                                    Total output compared with accepted and defective units for the current cycle.
+                                </p>
+                            </div>
+                            <span class="panel__note" id="breakdownNote">Current cycle / 0 units</span>
+                        </div>
+                        <div class="legend" id="breakdownLegend" aria-label="Production breakdown legend"></div>
+                        <div class="chart-wrap chart-wrap--breakdown" data-chart-container>
+                            <canvas id="productionBreakdownChart" class="chart-canvas" width="900" height="420" aria-label="Production breakdown bar chart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="surface-card panel panel--quality">
+                        <div class="panel__header panel__header--stack">
+                            <div>
+                                <p class="panel__eyebrow">Yield Distribution</p>
+                                <h3>Quality Ratio</h3>
+                                <p class="panel__copy">
+                                    Good and defective units represented with a centered yield view and clean segment balance.
+                                </p>
+                            </div>
+                            <div class="legend legend--compact" id="qualityLegend" aria-label="Quality ratio legend"></div>
+                        </div>
+                        <div class="chart-wrap chart-wrap--quality" data-chart-container>
+                            <canvas id="qualityRatioChart" class="chart-canvas" width="360" height="360" aria-label="Quality ratio doughnut chart"></canvas>
+                        </div>
+                        <div class="quality-grid" aria-label="Quality highlights">
+                            <article class="quality-metric quality-metric--success">
+                                <span>Good Yield</span>
+                                <strong id="qualityGoodShare">0.00%</strong>
+                                <p>Share of units cleared for release.</p>
+                            </article>
+                            <article class="quality-metric quality-metric--danger">
+                                <span>Defect Share</span>
+                                <strong id="qualityDefectShare">0.00%</strong>
+                                <p>Units flagged for review or rework.</p>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article class="surface-card panel panel--trends">
+                        <div class="panel__header">
+                            <div>
+                                <p class="panel__eyebrow">Operational Behavior</p>
+                                <h3>Operational Trends</h3>
+                                <p class="panel__copy">
+                                    Simulated changes in energy use, failures, and working hours across recent periods.
+                                </p>
+                            </div>
+                            <span class="panel__note" id="trendInsight">Operational trends are waiting for telemetry input.</span>
+                        </div>
+                        <div class="legend" id="trendsLegend" aria-label="Operational trends legend"></div>
+                        <div class="chart-wrap chart-wrap--trends" data-chart-container>
+                            <canvas id="operationalTrendsChart" class="chart-canvas" width="1200" height="448" aria-label="Operational trends line chart"></canvas>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
